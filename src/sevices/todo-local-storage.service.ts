@@ -17,4 +17,4 @@ const addItem = (item) => {
   localStorage.setItem(TODO_LIST_STORAGE_KEY, JSON.stringify({ items: newList }));
 };
 
-module.exports = { getList, addItem };
+export default { getList, addItem };

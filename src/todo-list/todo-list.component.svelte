@@ -1,14 +1,14 @@
 <script lang="ts">
   import ToDoItem from './todo-item.component.svelte';
   import ToDoTopPanel from './todo-top-panel.component.svelte';
-  import { getList, addItem } from '../sevices/todo-local-storage.service';
+  import ToDoLocalStorageService from '../sevices/todo-local-storage.service';
 
-  let items = getList();
+  let items = ToDoLocalStorageService.getList();
   $: itemsCount = items.length;
 
   const onClickAddItem = () => {
-    addItem('new item');
-    items = getList();
+    ToDoLocalStorageService.addItem('new item');
+    items = ToDoLocalStorageService.getList();
   };
 
   const onClickClearChecked = () => {};
