@@ -1,10 +1,22 @@
 <script>
   import ToDoItem from './ToDoItem.svelte';
-  let items = ['item 1', 'item 2', 'item 3', 'item 4'];
+  import ToDoTopPanel from './ToDoTopPanel.svelte';
+  import { getList, addItem } from '../sevices/todo-local-storage.service';
+
+  let items = getList();
+  $: itemsCount = items.length;
+
+  const onClickAddItem = () => {
+    addItem('new item');
+    items = getList();
+  };
+
+  const onClickClearChecked = () => {};
 </script>
 
 <main>
   <h1>To Do</h1>
+  <ToDoTopPanel {itemsCount} on:add={onClickAddItem} on:clearChecked={onClickClearChecked} />
   <div>
     {#each items as item}
       <ToDoItem class="item" text={item} />
