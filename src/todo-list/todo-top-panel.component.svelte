@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
 
-  import Button from '../components/Button.svelte';
+  import Button from '../components/button.component.svelte';
 
   let itemsCount = 0;
   export { itemsCount };

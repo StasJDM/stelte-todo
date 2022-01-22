@@ -1,6 +1,6 @@
 <script>
-  import ToDoItem from './ToDoItem.svelte';
-  import ToDoTopPanel from './ToDoTopPanel.svelte';
+  import ToDoItem from './todo-item.component.svelte';
+  import ToDoTopPanel from './todo-top-panel.component.svelte';
   import { getList, addItem } from '../sevices/todo-local-storage.service';
 
   let items = getList();

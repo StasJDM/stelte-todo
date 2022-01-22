@@ -1,5 +1,5 @@
 <script>
-  import ToDoList from './todo-list/ToDoList.svelte';
+  import ToDoList from './todo-list/todo-item.component.svelte';
 </script>
 
 <main>
