@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ToDoItem from './todo-item.component.svelte';
   import ToDoTopPanel from './todo-top-panel.component.svelte';
   import { getList, addItem } from '../sevices/todo-local-storage.service';
@@ -19,7 +19,7 @@
   <ToDoTopPanel {itemsCount} on:add={onClickAddItem} on:clearChecked={onClickClearChecked} />
   <div>
     {#each items as item}
-      <ToDoItem class="item" text={item} />
+      <ToDoItem text={item} />
     {/each}
   </div>
 </main>
