@@ -32,14 +32,21 @@ export class ToDoLocalStorageService {
     this._saveList(newList);
   }
 
-  public updateItem(changedItem: ToDoItem) {
+  public updateItem(changedItem: ToDoItem): void {
     const list = this.getList();
     const updatedList = list.map((item) => (item.id === changedItem.id ? changedItem : item));
 
     this._saveList(updatedList);
   }
 
-  private _saveList(items) {
+  public clearCheckedItems(): void {
+    const list = this.getList();
+    const clearedList = list.filter((item) => !item.checked);
+
+    this._saveList(clearedList);
+  }
+
+  private _saveList(items): void {
     localStorage.setItem(TODO_LIST_STORAGE_KEY, JSON.stringify({ items }));
   }
 }

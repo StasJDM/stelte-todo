@@ -15,11 +15,15 @@
     showInput = true;
   };
 
-  const onClickButtonClearChecked = () => {};
+  const onClickButtonClearChecked = () => {
+    toDoLocalStorageService.clearCheckedItems();
+    items = toDoLocalStorageService.getList();
+  };
 
   const onAddItem = (event: CustomEvent) => {
     toDoLocalStorageService.addItem(event.detail);
     items = toDoLocalStorageService.getList();
+
     showInput = false;
   };
 
