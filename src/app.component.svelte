@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import ToDoList from './todo-list/todo-list.component.svelte';
 </script>
 

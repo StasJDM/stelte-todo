@@ -1,25 +1,27 @@
 <script lang="ts">
-  export let text = 'text';
+  import type { ToDoItem } from '../types';
+
+  export let item: ToDoItem;
 </script>
 
 <main>
-  <div class="item-container">{text}</div>
+  <div class="item-container">{item.value}</div>
 </main>
 
-<style>
+<style lang="scss">
   main {
     border-bottom: 1px solid #bababa;
-  }
 
-  main:last-child {
-    border-bottom: none;
-  }
+    &:last-child {
+      border-bottom: none;
+    }
 
-  .item-container {
-    padding: 8px 16px;
-  }
+    .item-container {
+      padding: 8px 16px;
 
-  .item-container:hover {
-    background: #f0f0f0;
+      &:hover {
+        background: #f0f0f0;
+      }
+    }
   }
 </style>
