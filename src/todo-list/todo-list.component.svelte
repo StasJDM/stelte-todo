@@ -2,25 +2,37 @@
   import ToDoItem from './todo-item.component.svelte';
   import ToDoTopPanel from './todo-top-panel.component.svelte';
   import ToDoLocalStorageService from '../sevices/todo-local-storage.service';
+  import TodoInput from './todo-input.component.svelte';
 
   let items = ToDoLocalStorageService.getList();
   $: itemsCount = items.length;
 
-  const onClickAddItem = () => {
-    ToDoLocalStorageService.addItem('new item');
-    items = ToDoLocalStorageService.getList();
+  let showInput = false;
+
+  const onClickButtonAdd = () => {
+    showInput = true;
   };
 
-  const onClickClearChecked = () => {};
+  const onClickButtonClearChecked = () => {};
+
+  const onAddItem = (event: CustomEvent) => {
+    ToDoLocalStorageService.addItem(event.detail);
+    items = ToDoLocalStorageService.getList();
+    showInput = false;
+  };
 </script>
 
 <main>
   <h1>To Do</h1>
-  <ToDoTopPanel {itemsCount} on:add={onClickAddItem} on:clearChecked={onClickClearChecked} />
+  <ToDoTopPanel {itemsCount} on:add={onClickButtonAdd} on:clearChecked={onClickButtonClearChecked} />
   <div>
     {#each items as item}
       <ToDoItem text={item} />
     {/each}
+
+    {#if showInput}
+      <TodoInput on:done={onAddItem} />
+    {/if}
   </div>
 </main>
 
