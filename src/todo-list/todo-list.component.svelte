@@ -1,10 +1,12 @@
 <script lang="ts">
   import ToDoItem from './todo-item.component.svelte';
   import ToDoTopPanel from './todo-top-panel.component.svelte';
-  import ToDoLocalStorageService from '../sevices/todo-local-storage.service';
   import TodoInput from './todo-input.component.svelte';
+  import { ToDoLocalStorageService } from '../sevices/todo-local-storage.service';
 
-  let items = ToDoLocalStorageService.getList();
+  const toDoLocalStorageService = new ToDoLocalStorageService();
+
+  let items = toDoLocalStorageService.getList();
   $: itemsCount = items.length;
 
   let showInput = false;
@@ -13,12 +15,21 @@
     showInput = true;
   };
 
-  const onClickButtonClearChecked = () => {};
+  const onClickButtonClearChecked = () => {
+    toDoLocalStorageService.clearCheckedItems();
+    items = toDoLocalStorageService.getList();
+  };
 
   const onAddItem = (event: CustomEvent) => {
-    ToDoLocalStorageService.addItem(event.detail);
-    items = ToDoLocalStorageService.getList();
+    toDoLocalStorageService.addItem(event.detail);
+    items = toDoLocalStorageService.getList();
+
     showInput = false;
+  };
+
+  const onChangeItem = (event: CustomEvent) => {
+    toDoLocalStorageService.updateItem(event.detail);
+    items = toDoLocalStorageService.getList();
   };
 </script>
 
@@ -27,7 +38,7 @@
   <ToDoTopPanel {itemsCount} on:add={onClickButtonAdd} on:clearChecked={onClickButtonClearChecked} />
   <div>
     {#each items as item}
-      <ToDoItem {item} />
+      <ToDoItem {item} on:change={onChangeItem} />
     {/each}
 
     {#if showInput}

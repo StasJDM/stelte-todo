@@ -1,27 +1,42 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
   import type { ToDoItem } from '../types';
 
   export let item: ToDoItem;
+
+  const dispatch = createEventDispatcher();
+
+  const onChangeCheckboxState = () => {
+    dispatch('change', item);
+  };
 </script>
 
-<main>
-  <div class="item-container">{item.value}</div>
-</main>
+<div class:checked={item.checked} class="item-container">
+  <input type="checkbox" bind:checked={item.checked} on:change={onChangeCheckboxState} />
+  {item.value}
+</div>
 
 <style lang="scss">
-  main {
+  .item-container {
+    padding: 8px 16px;
     border-bottom: 1px solid #bababa;
+
+    input {
+      margin-right: 8px;
+    }
 
     &:last-child {
       border-bottom: none;
     }
 
-    .item-container {
-      padding: 8px 16px;
+    &:hover {
+      background: #f0f0f0;
+    }
 
-      &:hover {
-        background: #f0f0f0;
-      }
+    &.checked {
+      text-decoration: line-through;
+      color: #888888;
     }
   }
 </style>
