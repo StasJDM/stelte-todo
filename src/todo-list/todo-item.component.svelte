@@ -6,20 +6,20 @@
   <div class="item-container">{text}</div>
 </main>
 
-<style>
+<style lang="scss">
   main {
     border-bottom: 1px solid #bababa;
-  }
 
-  main:last-child {
-    border-bottom: none;
-  }
+    &:last-child {
+      border-bottom: none;
+    }
 
-  .item-container {
-    padding: 8px 16px;
-  }
+    .item-container {
+      padding: 8px 16px;
 
-  .item-container:hover {
-    background: #f0f0f0;
+      &:hover {
+        background: #f0f0f0;
+      }
+    }
   }
 </style>

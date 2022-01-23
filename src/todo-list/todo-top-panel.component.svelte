@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .panel-container {
     display: flex;
     justify-content: space-between;

@@ -36,20 +36,20 @@
   </div>
 </main>
 
-<style>
+<style lang="scss">
   main {
     margin: auto;
     width: 640px;
     border: 1px solid #dadada;
     border-radius: 4px;
     box-shadow: 2px 2px 10px #bdbdbd;
-  }
 
-  h1 {
-    text-align: center;
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 56px;
-    font-weight: 100;
+    h1 {
+      text-align: center;
+      color: #ff3e00;
+      text-transform: uppercase;
+      font-size: 56px;
+      font-weight: 100;
+    }
   }
 </style>

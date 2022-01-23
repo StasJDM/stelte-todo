@@ -13,7 +13,7 @@
 
 <button on:click={onClick}>{text}</button>
 
-<style>
+<style lang="scss">
   button {
     margin: 0;
     background: #ff3e00;
@@ -21,13 +21,13 @@
     color: white;
     font-weight: 600;
     border: none;
-  }
 
-  button:hover {
-    background: #ff5d27;
-  }
+    &:hover {
+      background: #ff5d27;
+    }
 
-  button:active {
-    background: #c03000;
+    &:active {
+      background: #c03000;
+    }
   }
 </style>
