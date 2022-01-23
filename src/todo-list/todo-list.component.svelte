@@ -27,7 +27,7 @@
   <ToDoTopPanel {itemsCount} on:add={onClickButtonAdd} on:clearChecked={onClickButtonClearChecked} />
   <div>
     {#each items as item}
-      <ToDoItem text={item} />
+      <ToDoItem {item} />
     {/each}
 
     {#if showInput}

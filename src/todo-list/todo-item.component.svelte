@@ -1,9 +1,11 @@
 <script lang="ts">
-  export let text = 'text';
+  import type { ToDoItem } from '../types';
+
+  export let item: ToDoItem;
 </script>
 
 <main>
-  <div class="item-container">{text}</div>
+  <div class="item-container">{item.value}</div>
 </main>
 
 <style lang="scss">

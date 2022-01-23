@@ -1,8 +1,18 @@
-const TODO_LIST_STORAGE_KEY = 'todo-list';
-const INITIAL_TODO_LIST = ['item 1', 'item 2', 'item 3', 'item 4'];
+import type { ToDoItem } from '../types';
 
-const getList = () => {
-  const list = JSON.parse(localStorage.getItem(TODO_LIST_STORAGE_KEY));
+export interface LocalStorageStructure {
+  items: ToDoItem[];
+}
+
+const TODO_LIST_STORAGE_KEY = 'todo-list';
+const INITIAL_TODO_LIST: ToDoItem[] = [
+  { value: 'Learn svelte', checked: true },
+  { value: 'Make a todo app using svelte', checked: false },
+  { value: 'Make a first commit to svelte project on GitHub', checked: false },
+];
+
+const getList = (): ToDoItem[] => {
+  const list: LocalStorageStructure = JSON.parse(localStorage.getItem(TODO_LIST_STORAGE_KEY));
 
   if (list) {
     return list.items;
@@ -11,9 +21,10 @@ const getList = () => {
   return INITIAL_TODO_LIST;
 };
 
-const addItem = (item) => {
+const addItem = (value: string): void => {
+  const newItem: ToDoItem = { value, checked: false };
   const actualList = getList();
-  const newList = [...actualList, item];
+  const newList: ToDoItem[] = [...actualList, newItem];
   localStorage.setItem(TODO_LIST_STORAGE_KEY, JSON.stringify({ items: newList }));
 };
 
