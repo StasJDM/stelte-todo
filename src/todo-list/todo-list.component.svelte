@@ -20,6 +20,11 @@
     items = ToDoLocalStorageService.getList();
     showInput = false;
   };
+
+  const onChangeItem = (event: CustomEvent) => {
+    ToDoLocalStorageService.updateItem(event.detail);
+    items = ToDoLocalStorageService.getList();
+  };
 </script>
 
 <main>
@@ -27,7 +32,7 @@
   <ToDoTopPanel {itemsCount} on:add={onClickButtonAdd} on:clearChecked={onClickButtonClearChecked} />
   <div>
     {#each items as item}
-      <ToDoItem {item} />
+      <ToDoItem {item} on:change={onChangeItem} />
     {/each}
 
     {#if showInput}
