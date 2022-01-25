@@ -8,11 +8,17 @@
   const onClickDone = () => {
     dispatch('done', value);
   };
+
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      dispatch('done', value);
+    }
+  };
 </script>
 
 <!-- svelte-ignore a11y-autofocus -->
 <div class="input-container">
-  <input bind:value autofocus />
+  <input bind:value on:keydown={onKeyDown} autofocus />
 
   <div on:click={onClickDone} class="icon-container">
     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
