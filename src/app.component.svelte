@@ -1,9 +1,11 @@
 <script lang="ts">
   import ToDoList from './todo-list/todo-list.component.svelte';
+  import BaseDialog from './dialogs/base-dialog.svelte';
 </script>
 
 <main>
   <ToDoList />
+  <BaseDialog />
 </main>
 
 <style>
