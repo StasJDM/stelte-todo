@@ -3,8 +3,11 @@
   import ToDoTopPanel from './todo-top-panel.component.svelte';
   import TodoInput from './todo-input.component.svelte';
   import { ToDoLocalStorageService } from '../sevices/todo-local-storage.service';
+  import { DialogService } from '../sevices/dialog.service';
+  import ExportDialog from '../dialogs/export-dialog.svelte';
 
   const toDoLocalStorageService = new ToDoLocalStorageService();
+  const dialogService = DialogService.getInstance();
 
   let items = toDoLocalStorageService.getList();
   $: itemsCount = items.length;
@@ -20,6 +23,12 @@
     items = toDoLocalStorageService.getList();
   };
 
+  const onClickButtonExport = () => {
+    dialogService.showDialog(ExportDialog, (event) => {
+      console.log('On export: ', event);
+    });
+  };
+
   const onAddItem = (event: CustomEvent) => {
     toDoLocalStorageService.addItem(event.detail);
     items = toDoLocalStorageService.getList();
@@ -33,9 +42,14 @@
   };
 </script>
 
-<main>
+<div class="todo-list">
   <h1>To Do</h1>
-  <ToDoTopPanel {itemsCount} on:add={onClickButtonAdd} on:clearChecked={onClickButtonClearChecked} />
+  <ToDoTopPanel
+    {itemsCount}
+    on:add={onClickButtonAdd}
+    on:clearChecked={onClickButtonClearChecked}
+    on:export={onClickButtonExport}
+  />
   <div>
     {#each items as item}
       <ToDoItem {item} on:change={onChangeItem} />
@@ -45,10 +59,10 @@
       <TodoInput on:done={onAddItem} />
     {/if}
   </div>
-</main>
+</div>
 
 <style lang="scss">
-  main {
+  .todo-list {
     margin: auto;
     width: 640px;
     border: 1px solid #dadada;

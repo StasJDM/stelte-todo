@@ -15,6 +15,10 @@
   const onClickClearChecked = () => {
     dispatch('clearChecked');
   };
+
+  const onCkickExport = () => {
+    dispatch('export');
+  };
 </script>
 
 <div class="panel-container">
@@ -22,6 +26,7 @@
   <div>
     <Button on:click={onClickAdd} text={'Add'} />
     <Button on:click={onClickClearChecked} text={'Clear checked'} />
+    <Button on:click={onCkickExport} text={'Export'} />
   </div>
 </div>
 
