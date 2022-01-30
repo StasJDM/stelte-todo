@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { DialogService } from '../sevices/dialog.service';
-  import { isActiveDialog } from '../store';
+  import { DialogService } from "../sevices/dialog.service";
+  import { isActiveDialog } from "../store";
 
   const dialogService = DialogService.getInstance();
 
@@ -8,8 +8,9 @@
 
   isActiveDialog.subscribe((v) => (showDialog = v));
 
-  const handleClickBackground = (): void => {
+  const handleClickBackground = (event): void => {
     isActiveDialog.update((v) => false);
+    dialogService.closeDialog({ ...event, detail: "none-events" });
   };
 
   const handleCloseDialog = (event: CustomEvent): void => {
@@ -20,7 +21,10 @@
 {#if showDialog}
   <div class="modal-background" on:click={handleClickBackground} />
   <div class="modal-container">
-    <svelte:component this={dialogService.component} on:close={handleCloseDialog} />
+    <svelte:component
+      this={dialogService.component}
+      on:close={handleCloseDialog}
+    />
   </div>
 {/if}
 
@@ -36,7 +40,7 @@
 
   .modal-container {
     width: 480px;
-    height: 200px;
+    height: fit-content;
     z-index: 2;
     position: fixed;
     margin: auto;
